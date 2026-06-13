@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GastoApp.Pages.HomePage"
+             Title="Inicio">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="0">
+
+           
+            <Label Text="Buen día, Carlos 👋"
+                   Style="{StaticResource TitleLabel}"
+                   Margin="0,8,0,2" />
+            <Label Text="Junio 2025"
+                   Style="{StaticResource SubtitleLabel}"
+                   Margin="0,0,0,14" />
+
+           
+            <Frame Style="{StaticResource PrimaryCard}" Margin="0,0,0,12">
+                <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto">
+
+                    <Label Text="Gasto total del mes"
+                           Grid.Row="0" Grid.Column="0"
+                           TextColor="#FFFFFFBB" FontSize="12" />
+
+                    <Label Text="Junio 2025"
+                           Grid.Row="0" Grid.Column="1"
+                           TextColor="#FFFFFFBB" FontSize="12"
+                           HorizontalOptions="End" />
+
+                    <Label Text="RD$ 18,450.00"
+                           Grid.Row="1" Grid.ColumnSpan="2"
+                           TextColor="White" FontSize="32"
+                           FontAttributes="Bold"
+                           Margin="0,4,0,8" />
+
+                    
+                    <ProgressBar Grid.Row="2" Grid.ColumnSpan="2"
+                                 Progress="0.74"
+                                 ProgressColor="White"
+                                 BackgroundColor="#FFFFFF44" />
+
+                    <Label Text="74% del presupuesto mensual"
+                           Grid.Row="2" Grid.ColumnSpan="2"
+                           TextColor="#FFFFFFBB" FontSize="11"
+                           Margin="0,6,0,0" />
+                </Grid>
+            </Frame>
+
+          
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto"
+                  ColumnSpacing="10" RowSpacing="10" Margin="0,0,0,14">
+
+                <Frame Grid.Row="0" Grid.Column="0" Style="{StaticResource Card}" Padding="12">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Presupuesto" Style="{StaticResource CaptionLabel}" FontSize="11" />
+                        <Label Text="RD$ 25,000" FontSize="15" FontAttributes="Bold"
+                               TextColor="{StaticResource Primary}" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="0" Grid.Column="1" Style="{StaticResource Card}" Padding="12">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Disponible" Style="{StaticResource CaptionLabel}" FontSize="11" />
+                        <Label Text="RD$ 6,550" FontSize="15" FontAttributes="Bold"
+                               TextColor="{StaticResource Danger}" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="0" Style="{StaticResource Card}" Padding="12">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Gastos hoy" Style="{StaticResource CaptionLabel}" FontSize="11" />
+                        <Label Text="RD$ 1,200" FontSize="15" FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="1" Style="{StaticResource Card}" Padding="12">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Total registros" Style="{StaticResource CaptionLabel}" FontSize="11" />
+                        <Label Text="14" FontSize="15" FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}" />
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+
+            <Label Text="Acciones rápidas"
+                   Style="{StaticResource SectionLabel}" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,0,0,14">
+                <Button Grid.Column="0"
+                        Text="+ Nuevo gasto"
+                        Style="{StaticResource PrimaryButton}"
+                        Clicked="OnNuevoGastoClicked" />
+                <Button Grid.Column="1"
+                        Text="Ver todos"
+                        BackgroundColor="Transparent"
+                        TextColor="{StaticResource Primary}"
+                        BorderColor="{StaticResource Primary}"
+                        BorderWidth="1"
+                        CornerRadius="12"
+                        HeightRequest="50"
+                        Clicked="OnVerTodosClicked" />
+            </Grid>
+
+          
+            <Label Text="Gastos recientes" Style="{StaticResource SectionLabel}" />
+
+
+            <Frame Style="{StaticResource Card}" Padding="12" Margin="0,0,0,8">
+                <Grid ColumnDefinitions="44,*,Auto" ColumnSpacing="10">
+                    <Frame Grid.Column="0"
+                           BackgroundColor="{StaticResource CatComidaBg}"
+                           BorderColor="Transparent"
+                           CornerRadius="10"
+                           WidthRequest="44" HeightRequest="44"
+                           Padding="0">
+                        <Label Text="🍽️" FontSize="20"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Frame>
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                        <Label Text="Almuerzo" FontSize="14" FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}" />
+                        <Label Text="Hoy, 12:30 pm · Comida"
+                               Style="{StaticResource CaptionLabel}" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text="-RD$ 350"
+                           FontSize="14" FontAttributes="Bold"
+                           TextColor="{StaticResource Danger}"
+                           VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+           
+            <Frame Style="{StaticResource Card}" Padding="12" Margin="0,0,0,8">
+                <Grid ColumnDefinitions="44,*,Auto" ColumnSpacing="10">
+                    <Frame Grid.Column="0"
+                           BackgroundColor="{StaticResource CatTransporteBg}"
+                           BorderColor="Transparent"
+                           CornerRadius="10"
+                           WidthRequest="44" HeightRequest="44"
+                           Padding="0">
+                        <Label Text="⛽" FontSize="20"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Frame>
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                        <Label Text="Gasolina" FontSize="14" FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}" />
+                        <Label Text="Ayer · Transporte"
+                               Style="{StaticResource CaptionLabel}" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text="-RD$ 900"
+                           FontSize="14" FontAttributes="Bold"
+                           TextColor="{StaticResource Danger}"
+                           VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+          
+            <Frame Style="{StaticResource Card}" Padding="12" Margin="0,0,0,8">
+                <Grid ColumnDefinitions="44,*,Auto" ColumnSpacing="10">
+                    <Frame Grid.Column="0"
+                           BackgroundColor="{StaticResource CatOcioBg}"
+                           BorderColor="Transparent"
+                           CornerRadius="10"
+                           WidthRequest="44" HeightRequest="44"
+                           Padding="0">
+                        <Label Text="🎬" FontSize="20"
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Frame>
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                        <Label Text="Cine" FontSize="14" FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}" />
+                        <Label Text="04 jun · Ocio"
+                               Style="{StaticResource CaptionLabel}" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text="-RD$ 480"
+                           FontSize="14" FontAttributes="Bold"
+                           TextColor="{StaticResource Danger}"
+                           VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

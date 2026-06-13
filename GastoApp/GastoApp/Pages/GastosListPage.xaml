@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GastoApp.Pages.GastosListPage"
+             Title="Mis Gastos">
+
+   
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="OnAgregarClicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="16,12">
+
+        
+        <SearchBar Grid.Row="0"
+                   x:Name="SearchBarGastos"
+                   Placeholder="Buscar gasto..."
+                   BackgroundColor="{StaticResource Surface}"
+                   TextColor="{StaticResource TextPrimary}"
+                   PlaceholderColor="{StaticResource TextHint}"
+                   Margin="0,0,0,10"
+                   SearchButtonPressed="OnBuscar"
+                   TextChanged="OnBuscarTextChanged" />
+
+        
+        <HorizontalStackLayout Grid.Row="1" Spacing="8" Margin="0,0,0,12">
+            <ScrollView Orientation="Horizontal">
+                <HorizontalStackLayout Spacing="8">
+                    <Button x:Name="ChipTodos" Text="Todos"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White" CornerRadius="20"
+                            FontSize="12" HeightRequest="32" Padding="14,0"
+                            Clicked="OnFiltroClicked" />
+                    <Button x:Name="ChipComida" Text="Comida"
+                            BackgroundColor="{StaticResource Surface}"
+                            TextColor="{StaticResource TextSecondary}"
+                            BorderColor="{StaticResource Border}" BorderWidth="1"
+                            CornerRadius="20" FontSize="12" HeightRequest="32" Padding="14,0"
+                            Clicked="OnFiltroClicked" />
+                    <Button x:Name="ChipTransporte" Text="Transporte"
+                            BackgroundColor="{StaticResource Surface}"
+                            TextColor="{StaticResource TextSecondary}"
+                            BorderColor="{StaticResource Border}" BorderWidth="1"
+                            CornerRadius="20" FontSize="12" HeightRequest="32" Padding="14,0"
+                            Clicked="OnFiltroClicked" />
+                    <Button x:Name="ChipOcio" Text="Ocio"
+                            BackgroundColor="{StaticResource Surface}"
+                            TextColor="{StaticResource TextSecondary}"
+                            BorderColor="{StaticResource Border}" BorderWidth="1"
+                            CornerRadius="20" FontSize="12" HeightRequest="32" Padding="14,0"
+                            Clicked="OnFiltroClicked" />
+                    <Button x:Name="ChipServicios" Text="Servicios"
+                            BackgroundColor="{StaticResource Surface}"
+                            TextColor="{StaticResource TextSecondary}"
+                            BorderColor="{StaticResource Border}" BorderWidth="1"
+                            CornerRadius="20" FontSize="12" HeightRequest="32" Padding="14,0"
+                            Clicked="OnFiltroClicked" />
+                </HorizontalStackLayout>
+            </ScrollView>
+        </HorizontalStackLayout>
+
+        
+        <Label Grid.Row="2"
+               x:Name="LblConteo"
+               Text="14 gastos · Total: RD$ 18,450"
+               Style="{StaticResource CaptionLabel}"
+               Margin="0,0,0,8" />
+
+        
+        <CollectionView Grid.Row="3"
+                        x:Name="GastosCollection"
+                        SelectionMode="Single"
+                        SelectionChanged="OnGastoSeleccionado">
+
+           
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>almuerzo|Almuerzo|Hoy, 12:30 pm|Comida|350|🍽️</x:String>
+                    <x:String>gasolina|Gasolina|Ayer|Transporte|900|⛽</x:String>
+                    <x:String>cine|Cine|04 jun|Ocio|480|🎬</x:String>
+                    <x:String>super|Supermercado|03 jun|Comida|3200|🛒</x:String>
+                    <x:String>luz|Luz eléctrica|01 jun|Servicios|2100|💡</x:String>
+                    <x:String>gym|Gimnasio|30 may|Salud|1500|🏋️</x:String>
+                    <x:String>uber|Uber|28 may|Transporte|320|🚗</x:String>
+                </x:Array>
+            </CollectionView.ItemsSource>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                   
+                    <Frame Style="{StaticResource Card}"
+                           Padding="12" Margin="0,0,0,8">
+                        <Grid ColumnDefinitions="44,*,Auto" ColumnSpacing="12">
+
+                            
+                            <Frame Grid.Column="0"
+                                   BackgroundColor="{StaticResource CatComidaBg}"
+                                   BorderColor="Transparent"
+                                   CornerRadius="10"
+                                   WidthRequest="44" HeightRequest="44"
+                                   Padding="0">
+                                <Label Text="🍽️" FontSize="22"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Frame>
+
+                          
+                            <VerticalStackLayout Grid.Column="1"
+                                                 VerticalOptions="Center"
+                                                 Spacing="2">
+                                <Label Text="Descripción"
+                                       FontSize="14" FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Fecha · Categoría"
+                                       Style="{StaticResource CaptionLabel}" />
+                            </VerticalStackLayout>
+
+                          
+                            <VerticalStackLayout Grid.Column="2"
+                                                 VerticalOptions="Center"
+                                                 HorizontalOptions="End">
+                                <Label Text="-RD$ 0.00"
+                                       FontSize="14" FontAttributes="Bold"
+                                       TextColor="{StaticResource Danger}"
+                                       HorizontalOptions="End" />
+                                <Label Text="Editar ›"
+                                       FontSize="11"
+                                       TextColor="{StaticResource Primary}"
+                                       HorizontalOptions="End" />
+                            </VerticalStackLayout>
+
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+           
+            <CollectionView.EmptyView>
+                <VerticalStackLayout HorizontalOptions="Center"
+                                     VerticalOptions="Center"
+                                     Spacing="12" Margin="0,60,0,0">
+                    <Label Text="📭" FontSize="48" HorizontalOptions="Center" />
+                    <Label Text="Sin gastos registrados"
+                           Style="{StaticResource SubtitleLabel}"
+                           HorizontalOptions="Center" />
+                    <Button Text="+ Agregar primer gasto"
+                            Style="{StaticResource PrimaryButton}"
+                            WidthRequest="220"
+                            HorizontalOptions="Center"
+                            Clicked="OnAgregarClicked" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:GastoApp.Pages"
+       x:Class="GastoApp.AppShell"
+       Shell.NavBarIsVisible="True"
+       Shell.TabBarIsVisible="True">
+
+   
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ShellBgColor">#1D9E75</Color>
+            <Color x:Key="ShellFgColor">#FFFFFF</Color>
+            <Color x:Key="TabBarBgColor">#FFFFFF</Color>
+            <Color x:Key="TabBarFgColor">#888780</Color>
+            <Color x:Key="TabBarSelColor">#1D9E75</Color>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid>
+                <Label Text="{Binding Title}" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <!-- ===== Tablero de Inicio ===== -->
+    <TabBar>
+        <Shell.BackgroundColor>#1D9E75</Shell.BackgroundColor>
+        <Shell.ForegroundColor>#FFFFFF</Shell.ForegroundColor>
+        <Shell.TitleColor>#FFFFFF</Shell.TitleColor>
+        <Shell.TabBarBackgroundColor>#FFFFFF</Shell.TabBarBackgroundColor>
+        <Shell.TabBarForegroundColor>#888780</Shell.TabBarForegroundColor>
+        <Shell.TabBarTitleColor>#888780</Shell.TabBarTitleColor>
+        <Shell.TabBarUnselectedColor>#888780</Shell.TabBarUnselectedColor>
+
+        <Tab Title="Inicio" Icon="tab_home.png">
+            <ShellContent
+                Title="Inicio"
+                ContentTemplate="{DataTemplate pages:HomePage}"
+                Route="home" />
+        </Tab>
+
+        <!-- ===== Tablero de Gastos (Osea el Listado) ===== -->
+        <Tab Title="Gastos" Icon="tab_list.png">
+            <ShellContent
+                Title="Mis Gastos"
+                ContentTemplate="{DataTemplate pages:GastosListPage}"
+                Route="gastos" />
+        </Tab>
+
+        <!--  Tablero de Resumen  -->
+        <Tab Title="Resumen" Icon="tab_chart.png">
+            <ShellContent
+                Title="Resumen"
+                ContentTemplate="{DataTemplate pages:ResumenPage}"
+                Route="resumen" />
+        </Tab>
+
+        <!--  Tablabero de Perfil  -->
+        <Tab Title="Perfil" Icon="tab_user.png">
+            <ShellContent
+                Title="Perfil"
+                ContentTemplate="{DataTemplate pages:PerfilPage}"
+                Route="perfil" />
+        </Tab>
+    </TabBar>
+
+    
+
+</Shell>

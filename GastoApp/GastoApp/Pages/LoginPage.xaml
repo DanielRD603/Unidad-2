@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GastoApp.Pages.LoginPage"
+             NavigationPage.HasNavigationBar="False"
+             Title="Iniciar sesión">
+
+   
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0.3,1">
+            <GradientStop Color="#1D9E75" Offset="0.0" />
+            <GradientStop Color="#085041" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24,60,24,40" Spacing="0">
+
+        
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="6" Margin="0,0,0,32">
+                <Frame BackgroundColor="#FFFFFF22"
+                       BorderColor="Transparent"
+                       CornerRadius="28"
+                       WidthRequest="80" HeightRequest="80"
+                       Padding="0"
+                       HorizontalOptions="Center">
+                    <Label Text="💳"
+                           FontSize="38"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Frame>
+
+                <Label Text="GastoApp"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+
+                <Label Text="Control de gastos personal"
+                       FontSize="14"
+                       TextColor="#FFFFFFBB"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+         
+            <Frame Style="{StaticResource Card}"
+                   Padding="20">
+                <VerticalStackLayout Spacing="16">
+
+                    <Label Text="Iniciar sesión"
+                           Style="{StaticResource TitleLabel}"
+                           FontSize="18" />
+
+                   
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Correo electrónico"
+                               Style="{StaticResource CaptionLabel}"
+                               FontSize="13"
+                               TextColor="{StaticResource TextSecondary}" />
+                        <Border Style="{StaticResource FieldBorder}">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Entry x:Name="EntryCorreo"
+                                   Placeholder="usuario@correo.com"
+                                   Keyboard="Email"
+                                   ReturnType="Next" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Contraseña"
+                               Style="{StaticResource CaptionLabel}"
+                               FontSize="13"
+                               TextColor="{StaticResource TextSecondary}" />
+                        <Border Style="{StaticResource FieldBorder}">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Entry x:Name="EntryPassword"
+                                   Placeholder="••••••••"
+                                   IsPassword="True"
+                                   ReturnType="Done" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                
+                    <Button x:Name="BtnLogin"
+                            Text="Iniciar sesión"
+                            Style="{StaticResource PrimaryButton}"
+                            Clicked="OnLoginClicked"
+                            Margin="0,4,0,0" />
+
+                   
+                    <Label Text="¿Olvidaste tu contraseña?"
+                           FontSize="13"
+                           TextColor="{StaticResource Primary}"
+                           HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnOlvidéClicked" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        
+            <Label Text="v1.0 · PUCMM 2025"
+                   FontSize="11"
+                   TextColor="#FFFFFF66"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

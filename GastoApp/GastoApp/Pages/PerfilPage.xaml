@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GastoApp.Pages.PerfilPage"
+             Title="Perfil">
+    <VerticalStackLayout Padding="16" Spacing="16">
+
+       
+        <Frame BackgroundColor="{StaticResource PrimaryLight}"
+               BorderColor="Transparent" CornerRadius="50"
+               WidthRequest="90" HeightRequest="90"
+               Padding="0" HorizontalOptions="Center"
+               Margin="0,24,0,0">
+            <Label Text="CG" FontSize="32" FontAttributes="Bold"
+                   TextColor="{StaticResource Primary}"
+                   HorizontalOptions="Center" VerticalOptions="Center" />
+        </Frame>
+
+        <Label Text="Carlos García"
+               Style="{StaticResource TitleLabel}"
+               HorizontalOptions="Center" />
+        <Label Text="carlos.garcia@pucmm.edu.do"
+               Style="{StaticResource SubtitleLabel}"
+               HorizontalOptions="Center"
+               Margin="0,0,0,16" />
+
+        <Button Text="Cerrar sesión"
+                Style="{StaticResource DangerButton}"
+                Clicked="OnCerrarSesionClicked" />
+    </VerticalStackLayout>
+</ContentPage>
