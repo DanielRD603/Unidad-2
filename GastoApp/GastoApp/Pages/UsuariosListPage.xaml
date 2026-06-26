@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GastoApp.Pages.UsuariosListPage" Title="Usuarios">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="OnAgregarClicked"/>
+    </ContentPage.ToolbarItems>
+    <Grid RowDefinitions="Auto,*" Padding="16,12">
+        <Label Grid.Row="0" x:Name="LblConteo" Style="{StaticResource SubtitleLabel}" Margin="0,0,0,10"/>
+        <CollectionView Grid.Row="1" x:Name="Lista" SelectionMode="Single" SelectionChanged="OnSeleccionado">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,10">
+                        <Grid ColumnDefinitions="46,*" ColumnSpacing="12">
+                            <Border Grid.Column="0" Style="{StaticResource IconBadge}"
+                                    BackgroundColor="{StaticResource InfoLight}">
+                                <Label Text="{Binding Iniciales}" FontSize="16" FontAttributes="Bold"
+                                       TextColor="{StaticResource Info}"
+                                       HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="3">
+                                <Label Text="{Binding Nombre}" FontSize="15" FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}"/>
+                                <Label Text="{Binding Correo}" FontSize="12"
+                                       TextColor="{StaticResource TextSecondary}"/>
+                                <Label Text="{Binding FechaRegistro, StringFormat='Desde {0:dd/MM/yyyy}'}"
+                                       FontSize="11" TextColor="{StaticResource TextHint}"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center"
+                                     Spacing="12" Margin="0,60,0,0">
+                    <Label Text="👤" FontSize="52" HorizontalOptions="Center"/>
+                    <Label Text="Sin usuarios registrados"
+                           Style="{StaticResource SubtitleLabel}" HorizontalOptions="Center"/>
+                    <Button Text="+ Agregar usuario" Style="{StaticResource PrimaryButton}"
+                            WidthRequest="210" HorizontalOptions="Center" Clicked="OnAgregarClicked"/>
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </Grid>
+</ContentPage>

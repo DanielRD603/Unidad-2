@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GastoApp.Pages.PresupuestoFormPage" Title="Nuevo Presupuesto">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Guardar" Clicked="OnGuardarClicked"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="0">
+            <Label Text="DATOS DEL PRESUPUESTO" Style="{StaticResource SectionLabel}"/>
+            <Border Style="{StaticResource Card}" Padding="16" Margin="0,0,0,12">
+                <VerticalStackLayout Spacing="14">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Categoría *" FontSize="13" TextColor="{StaticResource TextSecondary}"/>
+                        <Border Style="{StaticResource FieldBorder}">
+                            <Picker x:Name="PickerCategoria" Title="Selecciona categoría">
+                                <Picker.Items>
+                                    <x:String>General</x:String>
+                                    <x:String>Comida</x:String>
+                                    <x:String>Transporte</x:String>
+                                    <x:String>Ocio</x:String>
+                                    <x:String>Servicios</x:String>
+                                    <x:String>Salud</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Monto límite (RD$) *" FontSize="13" TextColor="{StaticResource TextSecondary}"/>
+                        <Border Style="{StaticResource FieldBorder}">
+                            <Entry x:Name="EntryMonto" Placeholder="0.00" Keyboard="Numeric"/>
+                        </Border>
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0" Spacing="6">
+                            <Label Text="Mes *" FontSize="13" TextColor="{StaticResource TextSecondary}"/>
+                            <Border Style="{StaticResource FieldBorder}">
+                                <Picker x:Name="PickerMes" Title="Mes">
+                                    <Picker.Items>
+                                        <x:String>1</x:String><x:String>2</x:String>
+                                        <x:String>3</x:String><x:String>4</x:String>
+                                        <x:String>5</x:String><x:String>6</x:String>
+                                        <x:String>7</x:String><x:String>8</x:String>
+                                        <x:String>9</x:String><x:String>10</x:String>
+                                        <x:String>11</x:String><x:String>12</x:String>
+                                    </Picker.Items>
+                                </Picker>
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <Label Text="Año *" FontSize="13" TextColor="{StaticResource TextSecondary}"/>
+                            <Border Style="{StaticResource FieldBorder}">
+                                <Entry x:Name="EntryAño" Placeholder="2025" Keyboard="Numeric"/>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+            <Button Text="💾  Guardar presupuesto" Style="{StaticResource PrimaryButton}"
+                    Clicked="OnGuardarClicked" Margin="0,4,0,10"/>
+            <Button x:Name="BtnEliminar" Text="🗑️  Eliminar presupuesto"
+                    Style="{StaticResource DangerButton}"
+                    IsVisible="False" Clicked="OnEliminarClicked" Margin="0,0,0,32"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
