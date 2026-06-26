@@ -1,117 +1,87 @@
-namespace GastoApp.Pages;
+using GastoApp.Models;
+using GastoApp.Services;
 
+namespace GastoApp.Pages;
 
 [QueryProperty(nameof(GastoId), "GastoId")]
 public partial class GastoFormPage : ContentPage
 {
-  
     private int _gastoId;
+    private Gasto? _enEdicion;
+
     public int GastoId
     {
         get => _gastoId;
-        set
-        {
-            _gastoId = value;
-            
-            if (_gastoId > 0)
-            {
-                Title = "Editar Gasto";
-                BtnEliminar.IsVisible = true;
-               
-            }
-        }
+        set { _gastoId = value; if (_gastoId > 0) CargarGasto(_gastoId); }
     }
-
-    
-    private string _categoriaSeleccionada = "Comida";
 
     public GastoFormPage()
     {
         InitializeComponent();
+        DatePickerFecha.Date = DateTime.Now;
+        TimePickerHora.Time  = DateTime.Now.TimeOfDay;
     }
 
-    
+    private void CargarGasto(int id)
+    {
+        var g = GastoService.Instancia.ObtenerPorId(id);
+        if (g is null) return;
+        _enEdicion = g;
+        Title = "Editar Gasto";
+        BtnEliminar.IsVisible = true;
+        EntryDescripcion.Text = g.Descripcion;
+        EntryMonto.Text       = g.Monto.ToString("0.00");
+        DatePickerFecha.Date  = g.Fecha.Date;
+        TimePickerHora.Time   = g.Fecha.TimeOfDay;
+        EditorNotas.Text      = g.Notas;
+        PickerCategoria.SelectedItem = g.Categoria;
+    }
+
     private async void OnGuardarClicked(object sender, EventArgs e)
     {
-        
         if (string.IsNullOrWhiteSpace(EntryDescripcion.Text))
+        { await DisplayAlertAsync("Requerido", "La descripción es obligatoria.", "OK"); return; }
+
+        if (!decimal.TryParse(EntryMonto.Text, out decimal monto) || monto <= 0)
+        { await DisplayAlertAsync("Monto inválido", "Ingresa un monto mayor a cero.", "OK"); return; }
+
+        if (PickerCategoria.SelectedItem is null)
+        { await DisplayAlertAsync("Requerido", "Selecciona una categoría.", "OK"); return; }
+
+        DateTime fecha = (DatePickerFecha.Date ?? DateTime.Now)
+                         .Add(TimePickerHora.Time ?? DateTime.Now.TimeOfDay);
+
+        if (_enEdicion is null)
         {
-            await DisplayAlert("Campo requerido",
-                "Debes ingresar una descripción.", "OK");
-            return;
+            GastoService.Instancia.Agregar(new Gasto
+            {
+                Descripcion = EntryDescripcion.Text.Trim(),
+                Monto       = monto,
+                Fecha       = fecha,
+                Categoria   = PickerCategoria.SelectedItem.ToString()!,
+                Notas       = EditorNotas.Text,
+                Usuario     = "admin"
+            });
+            await DisplayAlertAsync("✓ Guardado", "Gasto registrado.", "OK");
         }
-
-        if (string.IsNullOrWhiteSpace(EntryMonto.Text))
+        else
         {
-            await DisplayAlert("Campo requerido",
-                "Debes ingresar el monto.", "OK");
-            return;
+            _enEdicion.Descripcion = EntryDescripcion.Text.Trim();
+            _enEdicion.Monto       = monto;
+            _enEdicion.Fecha       = fecha;
+            _enEdicion.Categoria   = PickerCategoria.SelectedItem.ToString()!;
+            _enEdicion.Notas       = EditorNotas.Text;
+            await DisplayAlertAsync("✓ Actualizado", "Gasto actualizado.", "OK");
         }
-
-      
-
-        await DisplayAlert("Guardado ✓",
-            "Gasto registrado correctamente.", "OK");
         await Shell.Current.GoToAsync("..");
     }
 
-  
     private async void OnEliminarClicked(object sender, EventArgs e)
     {
-        bool confirmar = await DisplayAlert(
-            "Eliminar gasto",
-            "¿Estás seguro de que deseas eliminar este gasto?",
-            "Sí, eliminar", "Cancelar");
-
-        if (!confirmar) return;
-
-        // TODO Unidad 2: llamar al servicio de eliminación
-        await DisplayAlert("Eliminado", "El gasto fue eliminado.", "OK");
+        if (_enEdicion is null) return;
+        bool ok = await DisplayAlertAsync("Eliminar", "¿Eliminar este gasto?", "Sí", "Cancelar");
+        if (!ok) return;
+        GastoService.Instancia.Eliminar(_enEdicion);
         await Shell.Current.GoToAsync("..");
-    }
-
- 
-    private void OnCategoriaSeleccionada(object sender, TappedEventArgs e)
-    {
-        _categoriaSeleccionada = e.Parameter?.ToString() ?? "Otro";
-        ActualizarChips();
-    }
-
-    private void ActualizarChips()
-    {
-        
-        var chips = new Dictionary<string, Frame>
-        {
-            { "Comida",     ChipComida     },
-            { "Transporte", ChipTransporte },
-            { "Ocio",       ChipOcio       },
-            { "Servicios",  ChipServicios  },
-            { "Salud",      ChipSalud      },
-            { "Otro",       ChipOtro       }
-        };
-
-        foreach (var kv in chips)
-        {
-            bool activo = kv.Key == _categoriaSeleccionada;
-            kv.Value.BackgroundColor = activo
-                ? Color.FromArgb("#E1F5EE")   
-                : Color.FromArgb("#FFFFFF");   
-            kv.Value.BorderColor = activo
-                ? Color.FromArgb("#1D9E75")  
-                : Color.FromArgb("#D3D1C7");   
-           
-            var label = (kv.Value.Content as VerticalStackLayout)?
-                            .Children.OfType<Label>()
-                            .LastOrDefault();
-            if (label is not null)
-            {
-                label.TextColor = activo
-                    ? Color.FromArgb("#1D9E75")
-                    : Color.FromArgb("#5F5E5A");
-                label.FontAttributes = activo
-                    ? FontAttributes.Bold
-                    : FontAttributes.None;
-            }
-        }
     }
 }

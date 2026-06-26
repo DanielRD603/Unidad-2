@@ -5,21 +5,23 @@
              Title="Perfil">
     <VerticalStackLayout Padding="16" Spacing="16">
 
-       
-        <Frame BackgroundColor="{StaticResource PrimaryLight}"
-               BorderColor="Transparent" CornerRadius="50"
+        <Border BackgroundColor="{StaticResource PrimaryLight}"
+               Stroke="Transparent" StrokeThickness="0"
                WidthRequest="90" HeightRequest="90"
                Padding="0" HorizontalOptions="Center"
                Margin="0,24,0,0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="45" />
+            </Border.StrokeShape>
             <Label Text="CG" FontSize="32" FontAttributes="Bold"
                    TextColor="{StaticResource Primary}"
                    HorizontalOptions="Center" VerticalOptions="Center" />
-        </Frame>
+        </Border>
 
-        <Label Text="Carlos García"
+        <Label Text="Viva Cristo Rey"
                Style="{StaticResource TitleLabel}"
                HorizontalOptions="Center" />
-        <Label Text="carlos.garcia@pucmm.edu.do"
+        <Label Text="prototipo@ufhec.edu.do"
                Style="{StaticResource SubtitleLabel}"
                HorizontalOptions="Center"
                Margin="0,0,0,16" />

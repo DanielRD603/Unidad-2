@@ -1,238 +1,72 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GastoApp.Pages.GastoFormPage"
-             x:Name="ThisPage"
              Title="Nuevo Gasto">
-
-  
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Guardar"
-                     Order="Primary"
-                     Priority="0"
-                     Clicked="OnGuardarClicked" />
+        <ToolbarItem Text="Guardar" Clicked="OnGuardarClicked"/>
     </ContentPage.ToolbarItems>
-
     <ScrollView>
-        <VerticalStackLayout Padding="16,12" Spacing="0">
+        <VerticalStackLayout Padding="20" Spacing="0">
 
-           
-            <Label Text="Información principal"
-                   Style="{StaticResource SectionLabel}" />
-
-            <Frame Style="{StaticResource Card}" Padding="16" Margin="0,0,0,12">
+            <Label Text="DATOS DEL GASTO" Style="{StaticResource SectionLabel}"/>
+            <Border Style="{StaticResource Card}" Padding="16" Margin="0,0,0,12">
                 <VerticalStackLayout Spacing="14">
-
-                    
-                    <VerticalStackLayout Spacing="4">
-                        <Label Text="Descripción *"
-                               FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Descripción *" FontSize="13" TextColor="{StaticResource TextSecondary}"/>
                         <Border Style="{StaticResource FieldBorder}">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="10" />
-                            </Border.StrokeShape>
-                            <Entry x:Name="EntryDescripcion"
-                                   Placeholder="Ej. Almuerzo en el trabajo"
-                                   MaxLength="100"
-                                   ReturnType="Next" />
+                            <Entry x:Name="EntryDescripcion" Placeholder="Ej. Almuerzo" ReturnType="Next"/>
                         </Border>
                     </VerticalStackLayout>
-
-                  
-                    <VerticalStackLayout Spacing="4">
-                        <Label Text="Monto (RD$) *"
-                               FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Monto (RD$) *" FontSize="13" TextColor="{StaticResource TextSecondary}"/>
                         <Border Style="{StaticResource FieldBorder}">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="10" />
-                            </Border.StrokeShape>
-                            <Entry x:Name="EntryMonto"
-                                   Placeholder="0.00"
-                                   Keyboard="Numeric"
-                                   ReturnType="Next" />
+                            <Entry x:Name="EntryMonto" Placeholder="0.00" Keyboard="Numeric" ReturnType="Next"/>
                         </Border>
                     </VerticalStackLayout>
-
-                   
-                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
-                        <VerticalStackLayout Grid.Column="0" Spacing="4">
-                            <Label Text="Fecha *"
-                                   FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0" Spacing="6">
+                            <Label Text="Fecha *" FontSize="13" TextColor="{StaticResource TextSecondary}"/>
                             <Border Style="{StaticResource FieldBorder}">
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="10" />
-                                </Border.StrokeShape>
-                                <DatePicker x:Name="DatePickerFecha"
-                                            Format="dd/MM/yyyy"
-                                            TextColor="{StaticResource TextPrimary}" />
+                                <DatePicker x:Name="DatePickerFecha" Format="dd/MM/yyyy"/>
                             </Border>
                         </VerticalStackLayout>
-
-                        <VerticalStackLayout Grid.Column="1" Spacing="4">
-                            <Label Text="Hora"
-                                   FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <Label Text="Hora" FontSize="13" TextColor="{StaticResource TextSecondary}"/>
                             <Border Style="{StaticResource FieldBorder}">
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="10" />
-                                </Border.StrokeShape>
-                                <TimePicker x:Name="TimePickerHora"
-                                            Format="hh:mm tt"
-                                            TextColor="{StaticResource TextPrimary}" />
+                                <TimePicker x:Name="TimePickerHora" Format="hh:mm tt"/>
                             </Border>
                         </VerticalStackLayout>
                     </Grid>
-
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Categoría *" FontSize="13" TextColor="{StaticResource TextSecondary}"/>
+                        <Border Style="{StaticResource FieldBorder}">
+                            <Picker x:Name="PickerCategoria" Title="Selecciona una categoría">
+                                <Picker.Items>
+                                    <x:String>Comida</x:String>
+                                    <x:String>Transporte</x:String>
+                                    <x:String>Ocio</x:String>
+                                    <x:String>Servicios</x:String>
+                                    <x:String>Salud</x:String>
+                                    <x:String>Otro</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Notas (opcional)" FontSize="13" TextColor="{StaticResource TextSecondary}"/>
+                        <Border Style="{StaticResource FieldBorder}">
+                            <Editor x:Name="EditorNotas" Placeholder="Agrega una nota..." HeightRequest="72"/>
+                        </Border>
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-           
-            <Label Text="Categoría *" Style="{StaticResource SectionLabel}" />
-
-            <Frame Style="{StaticResource Card}" Padding="16" Margin="0,0,0,12">
-                <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto"
-                      ColumnSpacing="8" RowSpacing="8">
-
-                   
-                    <Frame Grid.Row="0" Grid.Column="0"
-                           x:Name="ChipComida"
-                           BackgroundColor="{StaticResource PrimaryLight}"
-                           BorderColor="{StaticResource Primary}"
-                           CornerRadius="10" Padding="6">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnCategoriaSeleccionada"
-                                                  CommandParameter="Comida" />
-                        </Frame.GestureRecognizers>
-                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
-                            <Label Text="🍽️" FontSize="22" HorizontalOptions="Center" />
-                            <Label Text="Comida" FontSize="11" FontAttributes="Bold"
-                                   TextColor="{StaticResource Primary}"
-                                   HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </Frame>
-
-                    
-                    <Frame Grid.Row="0" Grid.Column="1"
-                           x:Name="ChipTransporte"
-                           BackgroundColor="{StaticResource Surface}"
-                           BorderColor="{StaticResource Border}"
-                           CornerRadius="10" Padding="6">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnCategoriaSeleccionada"
-                                                  CommandParameter="Transporte" />
-                        </Frame.GestureRecognizers>
-                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
-                            <Label Text="⛽" FontSize="22" HorizontalOptions="Center" />
-                            <Label Text="Transporte" FontSize="11"
-                                   TextColor="{StaticResource TextSecondary}"
-                                   HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </Frame>
-
-                   
-                    <Frame Grid.Row="0" Grid.Column="2"
-                           x:Name="ChipOcio"
-                           BackgroundColor="{StaticResource Surface}"
-                           BorderColor="{StaticResource Border}"
-                           CornerRadius="10" Padding="6">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnCategoriaSeleccionada"
-                                                  CommandParameter="Ocio" />
-                        </Frame.GestureRecognizers>
-                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
-                            <Label Text="🎬" FontSize="22" HorizontalOptions="Center" />
-                            <Label Text="Ocio" FontSize="11"
-                                   TextColor="{StaticResource TextSecondary}"
-                                   HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </Frame>
-
-                   
-                    <Frame Grid.Row="1" Grid.Column="0"
-                           x:Name="ChipServicios"
-                           BackgroundColor="{StaticResource Surface}"
-                           BorderColor="{StaticResource Border}"
-                           CornerRadius="10" Padding="6">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnCategoriaSeleccionada"
-                                                  CommandParameter="Servicios" />
-                        </Frame.GestureRecognizers>
-                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
-                            <Label Text="💡" FontSize="22" HorizontalOptions="Center" />
-                            <Label Text="Servicios" FontSize="11"
-                                   TextColor="{StaticResource TextSecondary}"
-                                   HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </Frame>
-
-                   
-                    <Frame Grid.Row="1" Grid.Column="1"
-                           x:Name="ChipSalud"
-                           BackgroundColor="{StaticResource Surface}"
-                           BorderColor="{StaticResource Border}"
-                           CornerRadius="10" Padding="6">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnCategoriaSeleccionada"
-                                                  CommandParameter="Salud" />
-                        </Frame.GestureRecognizers>
-                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
-                            <Label Text="💊" FontSize="22" HorizontalOptions="Center" />
-                            <Label Text="Salud" FontSize="11"
-                                   TextColor="{StaticResource TextSecondary}"
-                                   HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </Frame>
-
-                    
-                    <Frame Grid.Row="1" Grid.Column="2"
-                           x:Name="ChipOtro"
-                           BackgroundColor="{StaticResource Surface}"
-                           BorderColor="{StaticResource Border}"
-                           CornerRadius="10" Padding="6">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnCategoriaSeleccionada"
-                                                  CommandParameter="Otro" />
-                        </Frame.GestureRecognizers>
-                        <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
-                            <Label Text="📦" FontSize="22" HorizontalOptions="Center" />
-                            <Label Text="Otro" FontSize="11"
-                                   TextColor="{StaticResource TextSecondary}"
-                                   HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </Frame>
-
-                </Grid>
-            </Frame>
-
-            
-            <Label Text="Notas (opcional)" Style="{StaticResource SectionLabel}" />
-
-            <Frame Style="{StaticResource Card}" Padding="12" Margin="0,0,0,16">
-                <Border Style="{StaticResource FieldBorder}">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="10" />
-                    </Border.StrokeShape>
-                    <Editor x:Name="EditorNotas"
-                            Placeholder="Agrega una nota o descripción adicional..."
-                            HeightRequest="80"
-                            MaxLength="250" />
-                </Border>
-            </Frame>
-
-            
-            <Button Text="💾  Guardar gasto"
-                    Style="{StaticResource PrimaryButton}"
-                    Clicked="OnGuardarClicked"
-                    Margin="0,0,0,10" />
-
-           
-            <Button x:Name="BtnEliminar"
-                    Text="🗑️  Eliminar gasto"
+            <Button Text="💾  Guardar gasto" Style="{StaticResource PrimaryButton}"
+                    Clicked="OnGuardarClicked" Margin="0,4,0,10"/>
+            <Button x:Name="BtnEliminar" Text="🗑️  Eliminar gasto"
                     Style="{StaticResource DangerButton}"
-                    IsVisible="False"
-                    Clicked="OnEliminarClicked"
-                    Margin="0,0,0,32" />
-
+                    IsVisible="False" Clicked="OnEliminarClicked" Margin="0,0,0,32"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

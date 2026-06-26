@@ -2,45 +2,36 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-   
-    
     <Color x:Key="Primary">#1D9E75</Color>
     <Color x:Key="PrimaryDark">#085041</Color>
     <Color x:Key="PrimaryLight">#E1F5EE</Color>
-
-   
-    <Color x:Key="Background">#F7F9F7</Color>
+    <Color x:Key="Background">#F4F6F9</Color>
     <Color x:Key="Surface">#FFFFFF</Color>
-    <Color x:Key="SurfaceVariant">#F1EFE8</Color>
+    <Color x:Key="TextPrimary">#1A1A2E</Color>
+    <Color x:Key="TextSecondary">#6B7280</Color>
+    <Color x:Key="TextHint">#C4C9D4</Color>
+    <Color x:Key="Border">#E5E7EB</Color>
+    <Color x:Key="Divider">#F3F4F6</Color>
+    <Color x:Key="Danger">#EF4444</Color>
+    <Color x:Key="DangerLight">#FEE2E2</Color>
+    <Color x:Key="Warning">#F59E0B</Color>
+    <Color x:Key="WarningLight">#FEF3C7</Color>
+    <Color x:Key="Success">#10B981</Color>
+    <Color x:Key="SuccessLight">#D1FAE5</Color>
+    <Color x:Key="Info">#3B82F6</Color>
+    <Color x:Key="InfoLight">#DBEAFE</Color>
 
-    
-    <Color x:Key="TextPrimary">#2C2C2A</Color>
-    <Color x:Key="TextSecondary">#5F5E5A</Color>
-    <Color x:Key="TextHint">#B4B2A9</Color>
 
- 
-    <Color x:Key="Border">#D3D1C7</Color>
-    <Color x:Key="Divider">#E8E7E3</Color>
-
-  
-    <Color x:Key="Danger">#E24B4A</Color>
-    <Color x:Key="DangerLight">#FCEBEB</Color>
-    <Color x:Key="Success">#1D9E75</Color>
-    <Color x:Key="Warning">#EF9F27</Color>
-    <Color x:Key="Info">#378ADD</Color>
-
-    
-    <Color x:Key="CatComidaBg">#FAEEDA</Color>
+    <Color x:Key="CatComidaBg">#FFF7ED</Color>
     <Color x:Key="CatComidaFg">#854F0B</Color>
-    <Color x:Key="CatTransporteBg">#E6F1FB</Color>
-    <Color x:Key="CatTransporteFg">#185FA5</Color>
-    <Color x:Key="CatOcioBg">#FBEAF0</Color>
-    <Color x:Key="CatOcioFg">#993556</Color>
-    <Color x:Key="CatServiciosBg">#EAF3DE</Color>
-    <Color x:Key="CatServiciosFg">#3B6D11</Color>
+    <Color x:Key="CatTransporteBg">#EFF6FF</Color>
+    <Color x:Key="CatTransporteFg">#1D4ED8</Color>
+    <Color x:Key="CatOcioBg">#FDF2F8</Color>
+    <Color x:Key="CatOcioFg">#9D174D</Color>
+    <Color x:Key="CatServiciosBg">#F0FDF4</Color>
+    <Color x:Key="CatServiciosFg">#166534</Color>
     <Color x:Key="CatSaludBg">#E1F5EE</Color>
     <Color x:Key="CatSaludFg">#085041</Color>
-    <Color x:Key="CatOtroBg">#F1EFE8</Color>
-    <Color x:Key="CatOtroFg">#444441</Color>
-
+    <Color x:Key="CatOtroBg">#F9FAFB</Color>
+    <Color x:Key="CatOtroFg">#374151</Color>
 </ResourceDictionary>
