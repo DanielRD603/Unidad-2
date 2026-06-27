@@ -85,7 +85,7 @@
                             Style="{StaticResource PrimaryButton}"
                             Clicked="OnLoginClicked" />
 
-                    <Label Text="Hint: usuario admin / clave 1234"
+                    <Label Text="Grupo #02: usuario admin / clave 1234"
                            FontSize="12"
                            TextColor="{StaticResource TextHint}"
                            HorizontalOptions="Center"
